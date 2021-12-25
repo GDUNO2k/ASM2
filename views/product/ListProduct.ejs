@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>ATN Solution</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body style="background-color: rgb(183, 238, 192)">
+    <div class="row">
+        <div class="col-md-6 offset-md-3" style="background-color: rgb(255, 255, 255);margin-top: 10px;padding:20px;">
+            <form action="/product/search" method="POST" autocomplete="off">
+                <div class="input-group">
+                    <input class="form-control rounded" placeholder="Input product" name='name' />
+                    <button type="submit" class="btn btn-info">Search</button>
+                </div>
+            </form>
+            
+            <!-- <form action="/product" method="POST" autocomplete="off" enctype="multipart/form-data"></form>
+                <div class="input-group">
+                    <input type="search" class="form-control rounded" placeholder="Input product" name="searchContent" aria-label="Search"
+                        aria-describedby="search-addon" />
+                    <button type="submit" class="btn btn-info">Search</button>
+                </div>
+            </form> -->
+            <!-- <div class="input-group">
+                <input type="search" class="form-control rounded" placeholder="Input product" aria-label="Search"
+                    aria-describedby="search-addon" />
+                    <a class="btn btn-secondary" href="/product/search" name="searchContent"> Search</a> 
+            </div> -->
+        </div>   
+        <div class="col-md-6 offset-md-3" style="background-color: rgb(255, 255, 255);margin-top: 10px;padding:20px;">
+            <h3>Product List</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price($)</th>
+                        <th>City</th>
+                        <th>Image</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% list.forEach(function(product){ %>
+                        <tr>
+                            <td><%= product.name %></td>
+                            <td><%= product.price %></td>
+                            <td><%= product.city %></td>
+                            <td>
+                                <img height="120px" width="120px" src="/uploads/<%=product.img.data%>">
+                            </td>
+                            <td>
+                                <a href="/product/<%= product._id %>"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                                <a href="/product/delete/<%= product._id %>" onclick="return confirm('Are you sure to delete this record ?');"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                    <% }); %>
+                    
+                </tbody>
+            </table>
+            <a class="btn btn-secondary" href="/product"><i class="fa fa-plus"></i> Create New</a> 
+            <a class="btn btn-secondary" href="/product/list"><i class="fa fa-list-alt"></i> View All Product</a>       
+        </div>
+    </div>
+
+</body>
+
+</html>
